@@ -1,5 +1,11 @@
 # STATUS — qwen38-et
 
+> ⚠️ **Parandused 2026-09-01.** Selles päevikus on kolm numbrit, mis on
+> hiljem üle mõõdetud ja parandatud: CPT tokenite arv (110,2M, mitte 131M),
+> korduse osakaal (3,1%, mitte ~10%) ja skoori nimetaja (151, mitte 153).
+> Lisaks: 200-ülesandeline kogum on **arenduskomplekt, mitte test**.
+> Päevikut ei ole tagantjärele ümber kirjutatud. Vt **[PARANDUSED.md](../PARANDUSED.md)**.
+
 ## 2026-08-22 — projekt käivitatud, allalaadimised jooksevad
 
 **Tehtud:**
@@ -62,7 +68,10 @@ vähem eesti sisu kui sama arv tokeneid inglise keeles.
 ## Eval mustandina valmis (2026-08-22) — OOTAB PERTI ÜLEVAATUST
 
 `eval/et_locked_v1_draft.jsonl` — **200 ülesannet**, neist **153 kontrollitava
-vastusega** ja 47 rubriigi järgi hinnatavat. SHA-256:
+vastusega** ja 47 rubriigi järgi hinnatavat. **NB (parandus 2026-09-01):**
+skoorija hindab neist tegelikult **151**, sest kaks `regressioon-kood`
+ülesannet jäetakse vahele (`scripts/08_score.py:115`). Kõik protsendid selles
+failis on 151 peal. Vt [PARANDUSED.md](../PARANDUSED.md). SHA-256:
 `439a37ee00eb90886c8344dc8a2d52e6a4ac575e9cd950a615ee05483b0e39c3` (seeme 20260822).
 
 Koosseis: käänamine 60 (TalTech `inflection_et`, ka omadussõna ühildumine),

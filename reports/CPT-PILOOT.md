@@ -1,5 +1,11 @@
 # CPT-piloot: toorteksti eeltreening eesti keele jaoks (avalik metoodika)
 
+> ⚠️ **Parandused 2026-09-01.** CPT tokenite arv on 110,2M (mudelini jõudnud),
+> mitte 131M; kordus oli 3,1% sõnadest, mitte ~10%. Väidet, et kordus säilitas
+> koodioskuse, ei saa teha, sest kontrolljooksu ilma korduseta ei tehtud.
+> Vt [PARANDUSED.md](../PARANDUSED.md).
+
+
 **Alustatud:** 2026-08-28 · **Riistvara:** 1× RTX 5090 (32 GB), võimsuspiir 450 W
 **Eesmärk:** mõõta, kas 150M tokeni kvaliteetproosa eeltreening (CPT) annab
 loomulikkuse ja keeletaju, mida sihitud SFT ei anna. Nõukoda 2 retsept
@@ -38,7 +44,7 @@ uurimisrühm, CC-BY-SA** (litsentsi kinnitas Kadri Muischnek, 2026-08-26).
 | teadus (doktoritööd, Eesti Arst, Agraarteadus, Arvutitehnika) | 3,3M sõna | |
 | populaarteadus (Horisont) | 0,2M sõna | |
 | ajakirjandus (Postimees, EPL, Ekspress, Maaleht, Läänelu, Luup) | 45M sõna (piiratud) | toimetatud, aga ei tohi domineerida |
-| replay: inglise + kood | ~10% tokenitest | katastroofilise unustamise vastu |
+| replay: inglise + kood | 3,1% sõnadest (mõõdetud) | katastroofilise unustamise vastu |
 
 Riigi Teataja jäi teadlikult välja (kantseleikeele riski hoiatus).
 Heldout: 2000 lõiku žanrite kaupa, EI treenita — perplexity-mõõduks.
@@ -111,7 +117,7 @@ veapõhine protsess on osa õppimisest, mitte ainult andmehulk. Taastamine käib
    EI toimu (meil 78 045 sammu = 6,5 päeva). Paki faili tasandil ise
    (~8000 tähemärki/tükk) — deterministlik ja treener-sõltumatu.
 2. **Päris läbilaskevõime 27B QLoRA-l (1× RTX 5090, 450 W): ~870 tok/s.**
-   Sellega arvuta: 131M tokenit = ~35 h. "Sammu aeg jääb samaks" on illusioon,
+   Sellega arvuta: 110,2M tokenit = ~35 h. "Sammu aeg jääb samaks" on illusioon,
    mis tekib lühikeste polsterdamata näidete pealt.
 3. **CPT ja SFT teevad ERI tööd:** CPT annab keele (ppl −31%, narratiiv),
    SFT annab oskused — ja oskuste ehitamine on iteratiivne protsess, mida
@@ -119,5 +125,5 @@ veapõhine protsess on osa õppimisest, mitte ainult andmehulk. Taastamine käib
    üks suur SFT.
 4. **Perplexity heldout kihita enne mõõtmist** (meil jäi žanrijaotus saamata,
    sest valim tuli järjekorrast). Enne/pärast on sama valimiga siiski aus.
-5. Eesti kontekstis: 2× ilukirjanduse ülekaal 131M-tokenises miksis andis
+5. Eesti kontekstis: 2× ilukirjanduse ülekaal 110M-tokenises miksis andis
    proosahüppe ilma inglise/koodi nähtava kahjuta (kontroll käimas).

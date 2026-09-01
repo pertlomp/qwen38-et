@@ -10,13 +10,21 @@ A complete, reproducible pipeline for teaching an open LLM (Qwen3.8-27B) proper
 Estonian on a single consumer GPU (RTX 5090, 32 GB), with every step measured
 and every failure documented.
 
-**Results:** Estonian skills score 61.7% → **85.8%** on a locked 200-task eval
-(surpassing GPT and Gemini on the same test); fiction perplexity **−31%** after
-131M tokens of continued pretraining on edited Estonian prose; HumanEval 85.4%
-retained. Full comparison tables in `reports/`.
+**Results:** Estonian skills score 61.7% → **86.1%** on a 200-task set (151
+auto-scored); fiction perplexity **−31%** after 110M tokens of continued
+pretraining on edited Estonian prose; HumanEval 85.4% retained. Full tables in
+`reports/`.
+
+> ⚠️ **Read [PARANDUSED.md](PARANDUSED.md) before quoting any number.** The
+> 200-task set was consulted after every training round and used to pick the
+> next batch, which makes it a **development set, not a held-out test**. The
+> 86.1% figure is optimistically biased by an unknown amount and is **not**
+> comparable to scores other models get on their own benchmarks. No independent
+> blind evaluation has been done. The most defensible number here is the
+> perplexity drop, because nothing was tuned against it.
 
 **What's in this repo:**
-- `scripts/` — 48 numbered Python scripts + orchestration chains: data
+- `scripts/` — 50 numbered Python scripts + 26 orchestration chains: data
   processing, rule-based generators (validated against ground truth via the
   Vabamorf morphological analyser), QLoRA SFT/DPO/CPT training, locked eval,
   a self-probing loop where the model's own errors become the next training
@@ -64,13 +72,21 @@ Täielik ja korratav torustik, millega õpetada avatud keelemudelile
 (Qwen3.8-27B) korralik eesti keel ühe tavalise GPU peal (RTX 5090, 32 GB) —
 iga samm mõõdetud, iga ebaõnnestumine dokumenteeritud.
 
-**Tulemused:** eesti oskuste skoor 61,7% → **85,8%** lukustatud 200-ülesandelisel
-testil (ületab GPT-d ja Geminit samal testil); ilukirjanduse perplexity **−31%**
-pärast 131M tokeni jätku-eeltreeningut toimetatud proosal; HumanEval 85,4%
-säilinud. Täistabelid kaustas `reports/`.
+**Tulemused:** eesti oskuste skoor 61,7% → **86,1%** 200-ülesandelisel kogumil
+(151 automaatselt skooritud); ilukirjanduse perpleksus **−31%** pärast 110M
+tokeni jätku-eeltreeningut toimetatud proosal; HumanEval 85,4% säilinud.
+Täistabelid kaustas `reports/`.
+
+> ⚠️ **Loe [PARANDUSED.md](PARANDUSED.md) enne, kui mõnda numbrit tsiteerid.**
+> 200-ülesandelist kogumit vaadati pärast igat treeninguringi ja selle järgi
+> valiti järgmine annus. See teeb sellest **arenduskomplekti, mitte testi**.
+> 86,1% on teadmata suurusega ülespoole kallutatud ega ole võrreldav sellega,
+> mida teised mudelid oma mõõdupuudel saavad. Sõltumatut pimehindamist ei ole
+> tehtud. Kõige kaitstavam number siin on perpleksuse langus, sest selle vastu
+> ei häälestatud midagi.
 
 **Mis repos on:**
-- `scripts/` — 48 nummerdatud skripti + ahelad: andmetöötlus, reeglipõhised
+- `scripts/` — 50 nummerdatud skripti + 26 ahelat: andmetöötlus, reeglipõhised
   generaatorid (Vabamorfiga ring-kontrollitud), QLoRA SFT/DPO/CPT treening,
   lukustatud eval, isesondiv tsükkel (mudeli enda vead → järgmine ring) ja
   välised testid.
@@ -80,6 +96,7 @@ säilinud. Täistabelid kaustas `reports/`.
 - `datasets/` — litsentsipuhtad treeningandmed: käänamiskorpus (11 011 kirjet,
   igal kirjel allikas ja litsents), fraasikäänamised, oskusmoodulid.
   Määramata litsentsiga kirjed on avaldamisest väljas, kuni õigused selguvad.
+  **Osa neist oli siiski treeningus** — teadlik otsus, vt PARANDUSED.md.
 - **Adapterid ja liidetud mudelid:** Hugging Face'is (link lisatakse
   avaldamisel) — kolm artefakti: puhas CPT-keelekiht, 13 ringi oskuste rada
   ja lõpptšempion.
